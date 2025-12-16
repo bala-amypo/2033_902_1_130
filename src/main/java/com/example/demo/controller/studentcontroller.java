@@ -20,5 +20,8 @@ public class studentcontroller{
     public String getEmail(){
         return email;
     }
-    pub
+    public void setEmail(){
+        this.email=email;
+    }
+    public float getCgpa
 }
