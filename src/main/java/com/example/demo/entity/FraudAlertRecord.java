@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 @Entity
 public class FraudAlertRecord{
     @Id
@@ -9,5 +10,12 @@ public class FraudAlertRecord{
     private String serialNumber;
     private String alertType;
     private String severity;
-    private String 
+    private String message;
+    private LocalDateTime alertDate;
+    private Boolean resolved;
+
+    public int getId(){
+        return id;
+    }
+    
 }

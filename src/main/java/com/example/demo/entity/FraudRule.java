@@ -10,7 +10,7 @@ public class FraudRule{
     private String ruleType;
     private Boolean active;
 
-    public Long getId(){
+    public int getId(){
         return id;
     }
     public void setId(Long id){
