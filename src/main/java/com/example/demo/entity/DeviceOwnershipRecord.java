@@ -33,6 +33,12 @@ public class DeviceOwnershipRecord {
     public void setOwnerName(String ownerName){
         this.ownerName=ownerName;
     }
+    public String getOwnerEmail(){
+        return ownerEmail;
+    }
+    public void setOwnerEmail(String ownerEmail){
+        this.ownerEmail=ownerEmail;
+    }
     public LocalDate getPurchaseDate(){
         return purchaseDate;
     }
@@ -51,6 +57,6 @@ public class DeviceOwnershipRecord {
     public void setActive(Boolean active){
         this.active=active;
     }
-    public DeviceOwnershipRecord(Long id,String serialNumber,String ownerName,String ownerEmail,){
-
+    public DeviceOwnershipRecord(Long id,String serialNumber,String ownerName,String ownerEmail,LocalDate purchaseDate,LocalDate warrantyExpiration,Boolean active){
+        this.
 }
