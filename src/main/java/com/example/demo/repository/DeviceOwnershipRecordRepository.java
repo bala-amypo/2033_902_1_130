@@ -1,4 +1,4 @@
 package com.example.demo.repository;
-public {
-
+public interface DeviceOwnershipRecordRepository{
+    
 }
