@@ -22,5 +22,11 @@ public class DeviceOwnershipRecord {
     public void setSerialNumber(String serialNumber){
         this.serialNumber=serialNumber;
     }
-    public String get
+    public String getOwnerName(){
+        return ownerName;
+    }
+    public void setOwnerName(String ownerName){
+        this.ownerName=ownerName;
+    }
+    public 
 }
