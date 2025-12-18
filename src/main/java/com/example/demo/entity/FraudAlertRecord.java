@@ -35,5 +35,14 @@ public class FraudAlertRecord{
     public String getAlertType(){
         return alertType;
     }
-    
+    public void setAlertType(String alertTpye){
+        this.alertType=alertTpye;
+    }
+    public String getSeverity(){
+        return severity;
+    }
+    public void setSeverity(String sveverity){
+        this.severity=severity;
+    }
+    public String getMessage()
 }
