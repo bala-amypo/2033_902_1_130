@@ -56,4 +56,5 @@ public class FraudAlertRecord{
     public void setAlertDate(LocalDateTime alertDate){
         this.alertDate=alertDate;
     }
+    public Boolean get
 }
