@@ -43,6 +43,10 @@ public class DeviceOwnershipRecord {
         return warrantyExpiration;
     }
     public void setWarrantyExpiration(LocalDate warrantyExpiration){
-        this.wa
+        this.warrantyExpiration=warrantyExpiration;
     }
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive
 }
