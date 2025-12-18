@@ -35,6 +35,15 @@ public class StolenDeviceReport{
         this.reportDate=reportDate;
     }
     public String getDetails(){
-        return 
+        return details;
+    }
+    public void setDetails(String details){
+        this.details=details;
+    }
+
+    public StolenDeviceReport(Long id,String serialNumber,String reportedBy,LocalDateTime reportDate,String details){
+        this.id=id;
+        this.serialNumber=serialNumber;
+        this.
     }
 }
