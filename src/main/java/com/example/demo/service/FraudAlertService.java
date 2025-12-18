@@ -1,4 +1,4 @@
-package com.example.demo.controller;
-public class AuthController{
+package com.example.demo.service;
+public class FraudAlertService{
 
 }
