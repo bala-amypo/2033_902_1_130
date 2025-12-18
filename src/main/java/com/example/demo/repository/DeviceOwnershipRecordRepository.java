@@ -1,4 +1,5 @@
 package com.example.demo.repository;
-public interface DeviceOwnershipRecordRepository{
+import org.springframework.data.jpa.repository.JpaRepository
+public interface DeviceOwnershipRecordRepository extends JpaRepository<DemoOwnershipRecord,INTEGER>{
     
 }
