@@ -9,4 +9,13 @@ public class User{
     private String name;
     private String email;
     private String password;
+    private LocalDateTime createdAt;
+
+    public int getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public 
 }
