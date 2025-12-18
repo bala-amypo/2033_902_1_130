@@ -1,7 +1,8 @@
 package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.
-public interface FraudAlertRecordRepository{
+import com.example.demo.entity.FraudAlertRecord;
+@Repository
+public interface FraudAlertRecordRepository extends FraudAlertRecord{
 
 }
