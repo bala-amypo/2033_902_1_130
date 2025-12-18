@@ -26,5 +26,14 @@ public class FraudAlertRecord{
     public void setClaimId(Long claimId){
         this.claimId=claimId;
     }
+    public String getSerialNumber(){
+        return serialNumber;
+    }
+    public void setSerialNumber(String serialNumber){
+        this.serialNumber=serialNumber;
+    }
+    public String getAlertType(){
+        return alertType;
+    }
     
 }
