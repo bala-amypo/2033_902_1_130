@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 @Entity
 public class DeviceOwnershipRecord {
@@ -43,6 +43,6 @@ public class DeviceOwnershipRecord {
         return warrantyExpiration;
     }
     public void setWarrantyExpiration(LocalDate warrantyExpiration){
-        this.
+        this.wa
     }
 }
