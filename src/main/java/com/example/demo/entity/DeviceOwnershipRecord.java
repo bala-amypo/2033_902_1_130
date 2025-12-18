@@ -51,4 +51,6 @@ public class DeviceOwnershipRecord {
     public void setActive(Boolean active){
         this.active=active;
     }
+    public DeviceOwnershipRecord(Long id,String serialNumber,String ownerName,String ownerEmail,){
+
 }
