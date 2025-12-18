@@ -16,17 +16,17 @@ public class StolenDeviceReport{
     public void setId(Long id){
         this.id=id;
     }
-    public String getRuleCode(){
-        return ruleCode;
+    public String getSerialNumber(){
+        return serialNumber;
     }
-    public void setRuleCode(String ruleCode){
-        this.ruleCode=ruleCode;
+    public void setSerialNumber(String serialNumber){
+        this.serialNumber=serialNumber;
     }
-    public String getDescription(){
-        return description;
+    public String getReportedBy(){
+        return reportedBy;
     }
-    public void setDescription(String description){
-        this.description=description;
+    public void setReportedBy(String reportedBy){
+        this.reportedBy=reportedBy;
     }
-    public 
+    public LocalDateTime
 }
