@@ -29,6 +29,9 @@ public class DeviceOwnershipRecord {
         this.ownerName=ownerName;
     }
     public LocalDate getPurchaseDate(){
-        
+        return purchaseDate;
+    }
+    public void setPurchaseDate(LocalDateTime purchaseDate){
+        this.purchaseDate=purchaseDate;
     }
 }
