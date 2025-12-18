@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
+import 
 import java.time.LocalDate;
-import jakarta.persistence.*;
 @Entity
 public class DeviceOwnershipRecord {
 
