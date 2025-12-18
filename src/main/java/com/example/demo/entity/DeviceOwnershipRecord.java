@@ -9,4 +9,6 @@ public class DeviceOwnershipRecord {
     private String ownerEmail;
     private LocalDate purchaseDate;
     private LocalDate warrantyExpiration;
+
+    public 
 }
