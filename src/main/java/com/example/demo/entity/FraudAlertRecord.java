@@ -63,5 +63,9 @@ public class FraudAlertRecord{
         this.resolved=resolved;
     }
 
-    
+    public FraudAlertRecord(Long id,Long claimId,String serialNumber,String alertType,String severity,String message,LocalDateType alertDate,Boolean resolved){
+        this.id=id;
+        this.claimId=claimId;
+        
+    }
 }
