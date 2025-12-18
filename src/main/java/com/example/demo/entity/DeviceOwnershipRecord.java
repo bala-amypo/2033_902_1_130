@@ -9,6 +9,7 @@ public class DeviceOwnershipRecord {
     private String ownerEmail;
     private LocalDate purchaseDate;
     private LocalDate warrantyExpiration;
+    
 
     public int getId(){
         return id;
@@ -31,7 +32,13 @@ public class DeviceOwnershipRecord {
     public LocalDate getPurchaseDate(){
         return purchaseDate;
     }
-    public void setPurchaseDate(LocalDateTime purchaseDate){
+    public void setPurchaseDate(LocalDate purchaseDate){
         this.purchaseDate=purchaseDate;
+    }
+    public LocalDate getWarrantyExpiration(){
+        return warrantyExpiration;
+    }
+    public void setWarrantyExpiration(LocalDate warrantyExpiration){
+        this.
     }
 }
