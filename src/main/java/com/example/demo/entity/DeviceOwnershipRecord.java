@@ -10,5 +10,10 @@ public class DeviceOwnershipRecord {
     private LocalDate purchaseDate;
     private LocalDate warrantyExpiration;
 
-    public 
+    public int getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
 }
