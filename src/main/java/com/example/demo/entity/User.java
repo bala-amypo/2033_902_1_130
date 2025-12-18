@@ -38,5 +38,18 @@ public class User{
     public LocalDateTime getCreatedAt(){
         return createdAt;
     }
-    public void setCreatedAt
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt=createdAt;
+    }
+
+    public User(Long id,String name,String email,String password,LocalDateTime createdAt){
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.password=password;
+        this.createdAt=createdAt;
+    }
+    public User(){
+        
+    }
 }
