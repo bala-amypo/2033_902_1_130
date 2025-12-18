@@ -1,15 +1,19 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
-
+import jakarta.persistence.*;
+@Entity
 public class DeviceOwnershipRecord {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType=IDENTITY)
     private Long id;
     private String serialNumber;
     private String ownerName;
     private String ownerEmail;
     private LocalDate purchaseDate;
     private LocalDate warrantyExpiration;
-    
+    private boolean active;
 
     public int getId(){
         return id;
