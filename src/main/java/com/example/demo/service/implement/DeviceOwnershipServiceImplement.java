@@ -1,4 +1,4 @@
-package com.example.demo.service.;
-public class AuthController{
+package com.example.demo.service.implement;
+public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
 
 }
