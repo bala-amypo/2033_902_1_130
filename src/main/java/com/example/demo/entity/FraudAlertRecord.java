@@ -17,5 +17,10 @@ public class FraudAlertRecord{
     public int getId(){
         return id;
     }
-    
+    public void setId(Long id){
+        this.id=id;
+    }
+    public int getClaimId(){
+        re
+    }
 }
