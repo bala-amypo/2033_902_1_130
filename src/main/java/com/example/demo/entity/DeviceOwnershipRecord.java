@@ -58,5 +58,15 @@ public class DeviceOwnershipRecord {
         this.active=active;
     }
     public DeviceOwnershipRecord(Long id,String serialNumber,String ownerName,String ownerEmail,LocalDate purchaseDate,LocalDate warrantyExpiration,Boolean active){
-        this.
+        this.id=id;
+        this.serialNumber=serialNumber;
+        this.ownerName=ownerName;
+        this.ownerEmail=ownerEmail;
+        this.purchaseDate=purchaseDate;
+        this.warrantyExpiration=warrantyExpiration;
+        this.active=active;
+    }
+    public DeviceOwnershipRecord(){
+    
+    }
 }
