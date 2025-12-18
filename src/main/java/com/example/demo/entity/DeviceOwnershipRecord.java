@@ -48,5 +48,7 @@ public class DeviceOwnershipRecord {
     public Boolean getActive(){
         return active;
     }
-    public void setActive
+    public void setActive(Boolean active){
+        this.active=active;
+    }
 }
