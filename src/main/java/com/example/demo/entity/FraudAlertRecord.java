@@ -41,8 +41,19 @@ public class FraudAlertRecord{
     public String getSeverity(){
         return severity;
     }
-    public void setSeverity(String sveverity){
+    public void setSeverity(String severity){
         this.severity=severity;
     }
-    public String getMessage()
+    public String getMessage(){
+        return message;
+    }
+    public void setMessage(String message){
+        this.message=message;
+    }
+    public LocalDateTime getAlertDate(){
+        return alertDate;
+    }
+    public void setAlertDate(LocalDateTime alertDate){
+        this.alertDate=alertDate;
+    }
 }
