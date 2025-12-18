@@ -28,5 +28,13 @@ public class StolenDeviceReport{
     public void setReportedBy(String reportedBy){
         this.reportedBy=reportedBy;
     }
-    public LocalDateTime
+    public LocalDateTime getReportDate(){
+        return reportDate;
+    }
+    public void setReportDate(LocalDateTime reportDate){
+        this.reportDate=reportDate;
+    }
+    public String getDetails(){
+        return 
+    }
 }
