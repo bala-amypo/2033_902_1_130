@@ -56,5 +56,12 @@ public class FraudAlertRecord{
     public void setAlertDate(LocalDateTime alertDate){
         this.alertDate=alertDate;
     }
-    public Boolean get
+    public Boolean getResolved(){
+        return resolved;
+    }
+    public void setResolved(Boolean resolved){
+        this.resolved=resolved;
+    }
+
+    
 }
