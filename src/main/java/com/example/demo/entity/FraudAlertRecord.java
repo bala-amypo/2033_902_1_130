@@ -13,5 +13,20 @@ public class FraudAlertRecord{
     public Long getId(){
         return id;
     }
-    public void 
+    public void setId(Long id){
+        this.id=id;
+    }
+    public String getRuleCode(){
+        return ruleCode;
+    }
+    public void setRuleCode(String ruleCode){
+        this.ruleCode=ruleCode;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(String description){
+        this.description=description;
+    }
+    public 
 }
