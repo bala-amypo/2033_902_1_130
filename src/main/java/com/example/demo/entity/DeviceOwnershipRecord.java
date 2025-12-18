@@ -28,5 +28,7 @@ public class DeviceOwnershipRecord {
     public void setOwnerName(String ownerName){
         this.ownerName=ownerName;
     }
-    public 
+    public LocalDate getPurchaseDate(){
+        
+    }
 }
