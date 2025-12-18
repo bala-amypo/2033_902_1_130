@@ -28,5 +28,18 @@ public class FraudAlertRecord{
     public void setDescription(String description){
         this.description=description;
     }
-    public 
+    public String getRuleType(){
+        return ruleType;
+    }
+    public void setRuleType(String ruleType){
+        this.ruleType=ruleType;
+    }
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+
+    public Fraud
 }
