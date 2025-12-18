@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class DeviceOwnershipRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType=IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String serialNumber;
     private String ownerName;
