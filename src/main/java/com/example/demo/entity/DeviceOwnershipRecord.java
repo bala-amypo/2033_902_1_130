@@ -15,7 +15,7 @@ public class DeviceOwnershipRecord {
     private LocalDate warrantyExpiration;
     private boolean active;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){

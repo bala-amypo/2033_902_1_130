@@ -11,7 +11,7 @@ public class User{
     private String password;
     private LocalDateTime createdAt;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){

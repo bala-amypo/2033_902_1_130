@@ -14,13 +14,13 @@ public class FraudAlertRecord{
     private LocalDateTime alertDate;
     private Boolean resolved;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){
         this.id=id;
     }
-    public int getClaimId(){
+    public Long getClaimId(){
         return claimId;
     }
     public void setClaimId(Long claimId){

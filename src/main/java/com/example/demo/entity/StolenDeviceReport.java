@@ -10,7 +10,7 @@ public class StolenDeviceReport{
     private LocalDateTime reportDate;
     private String details;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){
