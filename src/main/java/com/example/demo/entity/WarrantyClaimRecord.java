@@ -1,4 +1,8 @@
 package com.example.demo.entity;
+import jakarta.persistence.*;
+@Entity
 public class WarrantyClaimRecord{
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    
 }
