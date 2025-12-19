@@ -34,7 +34,7 @@ public class WarrantyClaimRecord{
     public String getClaimantEmail(){
         return claimantEmail;
     }
-    public void setClaimantName(String claimantEmail){
+    public void setClaimantEmail(String claimantEmail){
         this.claimantEmail=claimantEmail;
     }
     public String getClaimReason(){
