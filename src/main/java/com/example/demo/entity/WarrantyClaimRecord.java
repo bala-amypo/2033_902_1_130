@@ -51,5 +51,20 @@ public class WarrantyClaimRecord{
     public String getStatus(){
         return status;
     }
-    public void setStatus(String status){}
+    public void setStatus(String status){
+        this.status=status;
+    }
+
+    public WarrantyClaimRecord(Long id,String serialNumber,String claimantName,String claimantEmail,String claimReason,LocalDateTime submittedAt,String status){
+        this.id=id;
+        this.serialNumber=serialNumber;
+        this.claimantName=claimantName;
+        this.claimantEmail=claimantEmail;
+        this.claimReason=claimReason;
+        this.submittedAt=submittedAt;
+        this.status=status;
+    }
+    public WarrantyClaimRecord(){
+        
+    }
 }
