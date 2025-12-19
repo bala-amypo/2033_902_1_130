@@ -36,5 +36,20 @@ public class WarrantyClaimRecord{
     public void setClaimantName(String claimantEmail){
         this.claimantEmail=claimantEmail;
     }
-    public String getClaimReason(){}
+    public String getClaimReason(){
+        return claimReason;
+    }
+    public void setClaimReason(String claimReason){
+        this.claimReason=claimReason;
+    }
+    public LocalDateTime getSubmittedAt(){
+        return submittedAt;
+    }
+    public void setSubmittedAt(LocalDateTime submittedAt){
+        this.submittedAt=submittedAt;
+    }
+    public String getStatus(){
+        return status;
+    }
+    public void setStatus(String status){}
 }
