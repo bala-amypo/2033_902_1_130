@@ -21,4 +21,20 @@ public class WarrantyClaimRecord{
     public String getSerialNumber(){
         return serialNumber;
     }
+    public void setSerialNumber(String serialNumber){
+        this.serialNumber=serialNumber;
+    }
+    public String getClaimantName(){
+        return claimantName;
+    }
+    public void setClaimantName(String claimantName){
+        this.claimantName=claimantName;
+    }
+    public String getClaimantEmail(){
+        return claimantEmail;
+    }
+    public void setClaimantName(String claimantEmail){
+        this.claimantEmail=claimantEmail;
+    }
+    public String getClaimReason(){}
 }
