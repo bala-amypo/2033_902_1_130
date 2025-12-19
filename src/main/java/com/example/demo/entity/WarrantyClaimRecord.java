@@ -6,5 +6,5 @@ public class WarrantyClaimRecord{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String serialNumber;
-    
+    private String claima
 }
