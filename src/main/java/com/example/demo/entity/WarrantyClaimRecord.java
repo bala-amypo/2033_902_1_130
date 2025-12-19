@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 import jakarta.persistence.*;
+import java.time.*;
 @Entity
 public class WarrantyClaimRecord{
     @Id
@@ -65,6 +66,6 @@ public class WarrantyClaimRecord{
         this.status=status;
     }
     public WarrantyClaimRecord(){
-        
+
     }
 }
