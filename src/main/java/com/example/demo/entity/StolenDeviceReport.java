@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import java.time.*;
 import jakarta.persistence.*;
 @Entity
 public class StolenDeviceReport{
