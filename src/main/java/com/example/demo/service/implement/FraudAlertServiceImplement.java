@@ -1,5 +1,5 @@
 package com.example.demo.service.implement;
 import com.example.demo.service.FraudAlertService;
-public interface FraudAlertServiceImplement{
+public class FraudAlertServiceImplement implements FraudAlertService{
 
 }
