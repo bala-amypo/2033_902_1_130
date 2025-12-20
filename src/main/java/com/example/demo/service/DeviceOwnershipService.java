@@ -1,4 +1,4 @@
 package com.example.demo.service;
-public class DeviceOwnershipService{
+public interface DeviceOwnershipService{
 
 }

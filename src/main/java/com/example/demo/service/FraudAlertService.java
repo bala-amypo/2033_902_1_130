@@ -1,4 +1,4 @@
 package com.example.demo.service;
-public class FraudAlertService{
+public interface FraudAlertService{
 
 }
