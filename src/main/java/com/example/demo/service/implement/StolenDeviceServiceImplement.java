@@ -1,5 +1,5 @@
 package com.example.demo.service.implement;
 import com.example.demo.service.StolenDeviceService;
-public interface StolenDeviceServiceImplement{
+public class StolenDeviceServiceImplement implements StolenDeviceService{
 
 }
