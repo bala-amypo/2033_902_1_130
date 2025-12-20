@@ -1,5 +1,5 @@
 package com.example.demo.service;
 public interface DeviceOwnershipService{
     DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device);
-    List<
+    List<DeviceOwnershipRecord> getBySerial(String serialNumber)
 }
