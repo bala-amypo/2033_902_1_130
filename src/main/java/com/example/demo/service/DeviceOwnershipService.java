@@ -1,4 +1,4 @@
 package com.example.demo.service;
 public interface DeviceOwnershipService{
-    DeviceOwnershipRecord 
+    DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device)
 }
