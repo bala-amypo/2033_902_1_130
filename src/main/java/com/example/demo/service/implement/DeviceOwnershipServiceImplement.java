@@ -14,12 +14,7 @@ public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
         }
     @Override
         public List<DeviceOwnershipRecord>getBySerial(String serialNumber){
-            if(){
-
-            }
-            else{
-                return null;
-            }
+            return device.findBySerialNumber(serialNumber);
         }
     @Override
         public List<DeviceOwnershipRecord>getAllDevices(){
@@ -27,6 +22,8 @@ public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
         }
     @Override
         public DeviceOwnershipRecord updateDeviceStatus(Long id,boolean active){
-
+            DeviceOwnershipRecord devices=device.findById(id);
+            device.setActive(active);
+            return device.save(devices);
         }
 }
