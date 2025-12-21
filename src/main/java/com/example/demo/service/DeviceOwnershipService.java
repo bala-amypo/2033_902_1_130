@@ -4,6 +4,6 @@ import com.example.demo.model.DeviceOwnershipRecord;
 public interface DeviceOwnershipService{
     DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device);
     List<DeviceOwnershipRecord> getBySerial(String serialNumber);
-    <ListDeviceOwnershipRecord> getAllDevices();
+    List<DeviceOwnershipRecord> getAllDevices();
     DeviceOwnershipRecord updateDeviceStatus(Long id,boolean active);
 }
