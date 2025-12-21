@@ -10,31 +10,34 @@ import java.util.List;
 @RequestMapping("/api/devices")
 public class DeviceOwnershipController {
 
-    private final DeviceOwnershipService deviceOwnershipService;
+    private final DeviceOwnershipService service;
 
-    public DeviceOwnershipController(DeviceOwnershipService deviceOwnershipService) {
-        this.deviceOwnershipService = deviceOwnershipService;
+    public DeviceOwnershipController(DeviceOwnershipService service) {
+        this.service = service;
     }
 
-    @PostMapping("/POST")
-    public DeviceOwnershipRecord registerDevice(
-            @RequestBody DeviceOwnershipRecord device) {
-        return deviceOwnershipService.registerDevice(device);
+    @PostMapping("/")
+    public DeviceOwnershipRecord registerDevice(@RequestBody DeviceOwnershipRecord device) {
+        return service.registerDevice(device);
     }
-    @GetMapping("/GET/serial/{serialNumber}")
-    public List<DeviceOwnershipRecord> getBySerial(
-            @PathVariable String serialNumber) {
-        return deviceOwnershipService.getBySerial(serialNumber);
+
+    @PutMapping("/{id}/status")
+    public DeviceOwnershipRecord updateDeviceStatus(@PathVariable Long id, @RequestParam boolean active) {
+        return service.updateDeviceStatus(id, active);
     }
-    
-    @GetMapping("/GET")
+
+    @GetMapping("/serial/{serialNumber}")
+    public DeviceOwnershipRecord getDeviceBySerial(@PathVariable String serialNumber) {
+        return service.getDeviceBySerialNumber(serialNumber);
+    }
+
+    @GetMapping("/{id}")
+    public DeviceOwnershipRecord getDeviceById(@PathVariable Long id) {
+        return service.getDeviceById(id);
+    }
+
+    @GetMapping("/")
     public List<DeviceOwnershipRecord> getAllDevices() {
-        return deviceOwnershipService.getAllDevices();
-    }
-    @PutMapping("/PUT/{id}/status")
-    public DeviceOwnershipRecord updateDeviceStatus(
-            @PathVariable Long id,
-            @RequestParam boolean active) {
-        return deviceOwnershipService.updateDeviceStatus(id, active);
+        return service.getAllDevices();
     }
 }
