@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 import java.util.List;
+import com.example.demo.model.FraudAlertRecord;
+import com.example.demo.service.FraudAlertService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/devices")
