@@ -4,10 +4,11 @@ import com.example.demo.model.FraudAlertRecord;
 import com.example.demo.service.FraudAlertService;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/api/devices")
 public class FraudAlertController{
-    @Autowired
+
     private FraudAlertService service;
 
     @PostMapping
