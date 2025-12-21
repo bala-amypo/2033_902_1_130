@@ -7,5 +7,7 @@ import com.example.demo.repository.DeviceOwnershipRecordRepository;
 import com.example.demo.service.DeviceOwnershipService;
 @Service
 public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
-    @Autowired DeviceOwnershipRecordRepository 
+    @Autowired DeviceOwnershipRecordRepository device;
+    @Override
+        public DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord )
 }
