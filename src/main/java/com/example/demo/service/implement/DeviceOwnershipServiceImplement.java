@@ -21,6 +21,9 @@ public class DeviceOwnershipServiceImplement implements DeviceOwnershipService {
     }
 
     @Override
+    public List<DeviceOwnershipRecord
+
+    @Override
     public List<DeviceOwnershipRecord> getBySerial(String serialNumber) {
         return repo.findBySerialNumber(serialNumber);
     }
