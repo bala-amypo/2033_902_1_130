@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.WarrantyClaimRecord;
-import com.example.demo.repository.WarrantyClaimRepository;
+import com.example.demo.repository.WarrantyClaimRecRepository;
 import com.example.demo.service.WarrantyClaimService;
 
 @Service
