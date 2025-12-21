@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.example.demo.model.DeviceOwnershipRecord;
 @Repository
-public interface DeviceOwnershipRecordRepository extends JpaRepository<DeviceOwnershipRecord,Integer>{
+public interface DeviceOwnershipRecordRepository extends JpaRepository<DeviceOwnershipRecord,Long>{
     List<DeviceOwnershipRecord> findBySerialNumber(String serialNumber);
 }
