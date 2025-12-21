@@ -9,5 +9,9 @@ import com.example.demo.service.DeviceOwnershipService;
 public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
     @Autowired DeviceOwnershipRecordRepository device;
     @Override
-        public DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord )
+        public DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device){
+            return repo.save(device);
+        }
+    @Override
+        public List<DeviceOwnershipRecord
 }
