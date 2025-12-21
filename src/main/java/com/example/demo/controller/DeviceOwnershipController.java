@@ -26,11 +26,7 @@ public class DeviceOwnershipController {
             @PathVariable String serialNumber) {
         return deviceOwnershipService.getBySerial(serialNumber);
     }
-    @GetMapping("/GET/{id}")
-    public List<DeviceOwnershipRecord> getById(
-            @PathVariable Long id) {
-        return deviceOwnershipService.getById(id);
-    }
+    
     @GetMapping("/GET")
     public List<DeviceOwnershipRecord> getAllDevices() {
         return deviceOwnershipService.getAllDevices();
