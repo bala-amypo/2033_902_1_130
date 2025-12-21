@@ -22,5 +22,11 @@ public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
             }
         }
     @Override
-        public List<DeviceOwnershipRecord>
+        public List<DeviceOwnershipRecord>getAllDevices(){
+            return device.findall();
+        }
+    @Override
+        public DeviceOwnershipRecord updateDeviceStatus(Long id,boolean active){
+            
+        }
 }
