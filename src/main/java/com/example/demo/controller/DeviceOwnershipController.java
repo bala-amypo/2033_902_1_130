@@ -29,7 +29,7 @@ public class DeviceOwnershipController {
     @GetMapping("/GET/{id}")
     public List<DeviceOwnershipRecord> getById(
             @PathVariable Long id) {
-        return deviceOwnershipService.getById(serialNumber);
+        return deviceOwnershipService.getById(id);
     }
     @GetMapping("/GET")
     public List<DeviceOwnershipRecord> getAllDevices() {
