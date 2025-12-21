@@ -13,5 +13,14 @@ public class DeviceOwnershipServiceImplement implements DeviceOwnershipService{
             return repo.save(device);
         }
     @Override
-        public List<DeviceOwnershipRecord
+        public List<DeviceOwnershipRecord>getBySerial(String serialNumber){
+            if(){
+
+            }
+            else{
+                return null;
+            }
+        }
+    @Override
+        public List<DeviceOwnershipRecord>
 }
