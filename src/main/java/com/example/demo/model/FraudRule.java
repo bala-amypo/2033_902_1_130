@@ -3,7 +3,10 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "fraud_rules")
+@Table(
+    name = "fraud_rules",
+    uniqueConstraints = @UniqueConstraint(columnNames = "rule_code")
+)
 public class FraudRule {
 
     @Id
@@ -17,27 +20,24 @@ public class FraudRule {
     private String description;
 
     @Column(nullable = false)
-    private boolean active;
+    private String ruleType;
 
-    // 🔹 Default constructor (required by JPA)
-    public FraudRule() {
-    }
+    @Column(nullable = false)
+    private Boolean active;
 
-    // 🔹 Parameterized constructor (optional)
-    public FraudRule(String ruleCode, String description, boolean active) {
+    // 🔹 Constructors
+    public FraudRule() {}
+
+    public FraudRule(String ruleCode, String description, String ruleType, Boolean active) {
         this.ruleCode = ruleCode;
         this.description = description;
+        this.ruleType = ruleType;
         this.active = active;
     }
 
-    // 🔹 Getters and Setters
-
+    // 🔹 Getters & Setters
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getRuleCode() {
@@ -56,17 +56,19 @@ public class FraudRule {
         this.description = description;
     }
 
-    // ✅ Use getActive() to avoid compiler issues
-    public boolean getActive() {
+    public String getRuleType() {
+        return ruleType;
+    }
+
+    public void setRuleType(String ruleType) {
+        this.ruleType = ruleType;
+    }
+
+    public Boolean getActive() {
         return active;
     }
 
-    // Optional (safe to include)
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 }
