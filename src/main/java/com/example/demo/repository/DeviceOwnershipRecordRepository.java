@@ -6,5 +6,5 @@ import com.example.demo.model.DeviceOwnershipRecord;
 @Repository
 public interface DeviceOwnershipRecordRepository extends JpaRepository<DeviceOwnershipRecord,Long>{
     List<DeviceOwnershipRecord> findBySerialNumber(String serialNumber);
-    List<DeviceOwnershipRecord> findByNumber(Long id);
+    
 }
