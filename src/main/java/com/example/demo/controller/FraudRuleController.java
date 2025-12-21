@@ -9,38 +9,32 @@ import com.example.demo.model.FraudRule;
 import com.example.demo.service.FraudRuleService;
 
 @RestController
-@RequestMapping("/fraud-rules")
+@RequestMapping("/api/fraud-rules")
 public class FraudRuleController {
 
     @Autowired
     private FraudRuleService service;
 
-    // Create fraud rule
     @PostMapping
     public FraudRule createRule(@RequestBody FraudRule rule) {
         return service.createRule(rule);
     }
 
-    // Update fraud rule
     @PutMapping("/{id}")
-    public FraudRule updateRule(@PathVariable Long id,
-                                @RequestBody FraudRule updatedRule) {
-        return service.updateRule(id, updatedRule);
+    public FraudRule updateRule(@PathVariable Long id, @RequestBody FraudRule rule) {
+        return service.updateRule(id, rule);
     }
 
-    // Get all active rules
     @GetMapping("/active")
     public List<FraudRule> getActiveRules() {
         return service.getActiveRules();
     }
 
-    // Get rules by rule code
     @GetMapping("/code/{ruleCode}")
     public List<FraudRule> getRuleByCode(@PathVariable String ruleCode) {
         return service.getRuleByCode(ruleCode);
     }
 
-    // Get all rules
     @GetMapping
     public List<FraudRule> getAllRules() {
         return service.getAllRules();
