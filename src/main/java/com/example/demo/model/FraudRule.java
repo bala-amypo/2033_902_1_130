@@ -34,7 +34,7 @@ public class FraudRule{
     public void setRuleType(String ruleType){
         this.ruleType=ruleType;
     }
-    public Boolean getActive(){
+    public Boolean Active(){
         return active;
     }
     public void setActive(Boolean active){
