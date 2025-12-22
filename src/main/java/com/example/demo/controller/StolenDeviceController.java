@@ -13,7 +13,7 @@ public class StolenDeviceController {
     private final StolenDeviceService service;
 
     public StolenDeviceController(
-            StolenDeviceReportService service) {
+            StolenDeviceService service) {
         this.service = service;
     }
 
