@@ -1,56 +1,54 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.DeviceOwnershipRecord;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.exception.ValidationException;
 import com.example.demo.model.WarrantyClaimRecord;
-import com.example.demo.repository.DeviceOwnershipRepository;
 import com.example.demo.repository.WarrantyClaimRepository;
 import com.example.demo.service.WarrantyClaimService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class WarrantyClaimServiceImpl implements WarrantyClaimService {
 
-    private final WarrantyClaimRepository claimRepository;
-    private final DeviceOwnershipRepository deviceRepository;
+    private final WarrantyClaimRepository repository;
 
-    public WarrantyClaimServiceImpl(WarrantyClaimRepository claimRepository, DeviceOwnershipRepository deviceRepository) {
-        this.claimRepository = claimRepository;
-        this.deviceRepository = deviceRepository;
+    public WarrantyClaimServiceImpl(WarrantyClaimRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public WarrantyClaimRecord submitClaim(WarrantyClaimRecord claim) {
-        // Check that serialNumber exists in devices
-        DeviceOwnershipRecord device = deviceRepository.findBySerialNumber(claim.getSerialNumber())
-                .orElseThrow(() -> new IllegalArgumentException("Device with serial number not found"));
 
-        return claimRepository.save(claim);
+        // 🔒 Serial number validation (stub – replace with real device check)
+        if (claim.getSerialNumber() == null || claim.getSerialNumber().isBlank()) {
+            throw new ValidationException("Invalid device serial number");
+        }
+
+        return repository.save(claim);
     }
 
     @Override
-    public WarrantyClaimRecord updateClaimStatus(Long id, String status) {
-        WarrantyClaimRecord claim = claimRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Claim not found with id: " + id));
+    public WarrantyClaimRecord updateStatus(Long id, String status) {
+        WarrantyClaimRecord claim = getById(id);
         claim.setStatus(status);
-        return claimRepository.save(claim);
+        return repository.save(claim);
     }
 
     @Override
-    public WarrantyClaimRecord getClaimById(Long id) {
-        return claimRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Claim not found with id: " + id));
+    public WarrantyClaimRecord getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Claim not found with id: " + id));
     }
 
     @Override
-    public List<WarrantyClaimRecord> getClaimsBySerial(String serialNumber) {
-        return claimRepository.findBySerialNumber(serialNumber);
+    public List<WarrantyClaimRecord> getBySerialNumber(String serialNumber) {
+        return repository.findBySerialNumber(serialNumber);
     }
 
     @Override
     public List<WarrantyClaimRecord> getAllClaims() {
-        return claimRepository.findAll();
+        return repository.findAll();
     }
 }

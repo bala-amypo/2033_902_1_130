@@ -16,32 +16,34 @@ public class WarrantyClaimController {
         this.service = service;
     }
 
-    // Submit a claim
-    @PostMapping("/")
+    // POST /api/claims
+    @PostMapping
     public WarrantyClaimRecord submitClaim(@RequestBody WarrantyClaimRecord claim) {
         return service.submitClaim(claim);
     }
 
-    // Update claim status
+    // PUT /api/claims/{id}/status
     @PutMapping("/{id}/status")
-    public WarrantyClaimRecord updateStatus(@PathVariable Long id, @RequestParam String status) {
-        return service.updateClaimStatus(id, status);
+    public WarrantyClaimRecord updateStatus(
+            @PathVariable Long id,
+            @RequestParam String status) {
+        return service.updateStatus(id, status);
     }
 
-    // Get claim by ID
-    @GetMapping("/{id}")
-    public WarrantyClaimRecord getClaimById(@PathVariable Long id) {
-        return service.getClaimById(id);
-    }
-
-    // Get claims by serial number
+    // GET /api/claims/serial/{serialNumber}
     @GetMapping("/serial/{serialNumber}")
-    public List<WarrantyClaimRecord> getClaimsBySerial(@PathVariable String serialNumber) {
-        return service.getClaimsBySerial(serialNumber);
+    public List<WarrantyClaimRecord> getBySerial(@PathVariable String serialNumber) {
+        return service.getBySerialNumber(serialNumber);
     }
 
-    // Get all claims
-    @GetMapping("/")
+    // GET /api/claims/{id}
+    @GetMapping("/{id}")
+    public WarrantyClaimRecord getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    // GET /api/claims
+    @GetMapping
     public List<WarrantyClaimRecord> getAllClaims() {
         return service.getAllClaims();
     }

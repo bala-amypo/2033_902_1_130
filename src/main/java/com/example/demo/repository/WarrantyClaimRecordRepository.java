@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface WarrantyClaimRepository extends JpaRepository<WarrantyClaimRecord, Long> {
+
     List<WarrantyClaimRecord> findBySerialNumber(String serialNumber);
 }
