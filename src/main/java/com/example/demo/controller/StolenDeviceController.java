@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.StolenDeviceReport;
-import com.example.demo.service.StolenDeviceReportService;
+import com.example.demo.service.StolenDeviceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/stolen-devices")
 public class StolenDeviceController {
 
-    private final StolenDeviceReportService service;
+    private final StolenDeviceService service;
 
     public StolenDeviceController(
             StolenDeviceReportService service) {
