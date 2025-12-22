@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.repository.FraudAlertRecordRepository;
 import com.example.demo.service.FraudAlertService;
 import org.springframework.stereotype.Service;
+import com.example.demo.model.FraudAlertRecord;
 
 import java.util.List;
 
