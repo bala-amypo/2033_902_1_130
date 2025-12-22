@@ -4,7 +4,7 @@ import com.example.demo.model.StolenDeviceReport;
 
 import java.util.List;
 
-public interface StolenDeviceReportService {
+public interface StolenDeviceService {
 
     StolenDeviceReport reportStolenDevice(StolenDeviceReport report);
 
