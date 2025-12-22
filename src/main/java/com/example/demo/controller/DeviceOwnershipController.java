@@ -12,31 +12,42 @@ public class DeviceOwnershipController {
 
     private final DeviceOwnershipService service;
 
-    public DeviceOwnershipController(DeviceOwnershipService service) {
+    public DeviceOwnershipController(
+            DeviceOwnershipService service) {
         this.service = service;
     }
 
-    @PostMapping("/")
-    public DeviceOwnershipRecord registerDevice(@RequestBody DeviceOwnershipRecord device) {
+    // POST /api/devices
+    @PostMapping
+    public DeviceOwnershipRecord registerDevice(
+            @RequestBody DeviceOwnershipRecord device) {
         return service.registerDevice(device);
     }
 
+    // PUT /api/devices/{id}/status
     @PutMapping("/{id}/status")
-    public DeviceOwnershipRecord updateDeviceStatus(@PathVariable Long id, @RequestParam boolean active) {
-        return service.updateDeviceStatus(id, active);
+    public DeviceOwnershipRecord updateStatus(
+            @PathVariable Long id,
+            @RequestParam Boolean active) {
+        return service.updateStatus(id, active);
     }
 
+    // GET /api/devices/serial/{serialNumber}
     @GetMapping("/serial/{serialNumber}")
-    public DeviceOwnershipRecord getDeviceBySerial(@PathVariable String serialNumber) {
-        return service.getDeviceBySerialNumber(serialNumber);
+    public DeviceOwnershipRecord getBySerialNumber(
+            @PathVariable String serialNumber) {
+        return service.getBySerialNumber(serialNumber);
     }
 
+    // GET /api/devices/{id}
     @GetMapping("/{id}")
-    public DeviceOwnershipRecord getDeviceById(@PathVariable Long id) {
-        return service.getDeviceById(id);
+    public DeviceOwnershipRecord getById(
+            @PathVariable Long id) {
+        return service.getById(id);
     }
 
-    @GetMapping("/")
+    // GET /api/devices
+    @GetMapping
     public List<DeviceOwnershipRecord> getAllDevices() {
         return service.getAllDevices();
     }
