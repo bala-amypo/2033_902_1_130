@@ -4,18 +4,18 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.exception.ValidationException;
 import com.example.demo.model.StolenDeviceReport;
 import com.example.demo.repository.StolenDeviceReportRepository;
-import com.example.demo.service.StolenDeviceReportService;
+import com.example.demo.service.StolenDeviceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StolenDeviceReportServiceImpl
-        implements StolenDeviceReportService {
+public class StolenDeviceServiceImpl
+        implements StolenDeviceService {
 
     private final StolenDeviceReportRepository repository;
 
-    public StolenDeviceReportServiceImpl(
+    public StolenDeviceServiceImpl(
             StolenDeviceReportRepository repository) {
         this.repository = repository;
     }
