@@ -1,53 +1,54 @@
-package com.example.demo.service.implement;
+package com.example.demo.service.impl;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.exception.ValidationException;
 import com.example.demo.model.StolenDeviceReport;
 import com.example.demo.repository.StolenDeviceReportRepository;
-import com.example.demo.service.StolenDeviceService;
+import com.example.demo.service.StolenDeviceReportService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public class StolenDeviceServiceImplement implements StolenDeviceService {
+public class StolenDeviceReportServiceImpl
+        implements StolenDeviceReportService {
 
-    @Autowired
-    private StolenDeviceReportRepository repo;
+    private final StolenDeviceReportRepository repository;
+
+    public StolenDeviceReportServiceImpl(
+            StolenDeviceReportRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
-    public StolenDeviceReport reportStolen(StolenDeviceReport report) {
+    public StolenDeviceReport reportStolenDevice(
+            StolenDeviceReport report) {
 
-        // Duplicate stolen report check
-        if (!repo.findBySerialNumber(report.getSerialNumber()).isEmpty()) {
-            throw new IllegalArgumentException("Stolen device already reported");
+        // 🔒 Serial number validation (stub)
+        if (report.getSerialNumber() == null
+                || report.getSerialNumber().isBlank()) {
+            throw new ValidationException("Invalid device serial number");
         }
 
-        report.setReportedDate(LocalDate.now());
-        report.setRecovered(false);
-
-        return repo.save(report);
+        return repository.save(report);
     }
 
     @Override
-    public List<StolenDeviceReport> getReportsBySerial(String serialNumber) {
-        return repo.findBySerialNumber(serialNumber);
-    }
-
-    @Override
-    public List<StolenDeviceReport> getReportById(Long id) {
-
-        StolenDeviceReport report = repo.findById(id)
+    public StolenDeviceReport getById(Long id) {
+        return repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Stolen report not found"));
+                        new ResourceNotFoundException(
+                                "Stolen report not found with id: " + id));
+    }
 
-        return List.of(report);
+    @Override
+    public List<StolenDeviceReport> getBySerialNumber(
+            String serialNumber) {
+        return repository.findBySerialNumber(serialNumber);
     }
 
     @Override
     public List<StolenDeviceReport> getAllReports() {
-        return repo.findAll();
+        return repository.findAll();
     }
 }

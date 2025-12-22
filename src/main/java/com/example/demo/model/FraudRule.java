@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(
-    name = "fraud_rules",
-    uniqueConstraints = @UniqueConstraint(columnNames = "rule_code")
+        name = "fraud_rules",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "ruleCode")
+        }
 )
 public class FraudRule {
 
@@ -13,10 +15,10 @@ public class FraudRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "rule_code", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String ruleCode;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
@@ -25,10 +27,18 @@ public class FraudRule {
     @Column(nullable = false)
     private Boolean active;
 
-    // 🔹 Constructors
-    public FraudRule() {}
+    // 🔹 No-args constructor (JPA)
+    public FraudRule() {
+    }
 
-    public FraudRule(String ruleCode, String description, String ruleType, Boolean active) {
+    // 🔹 All-args constructor
+    public FraudRule(
+            Long id,
+            String ruleCode,
+            String description,
+            String ruleType,
+            Boolean active) {
+        this.id = id;
         this.ruleCode = ruleCode;
         this.description = description;
         this.ruleType = ruleType;
@@ -36,8 +46,13 @@ public class FraudRule {
     }
 
     // 🔹 Getters & Setters
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRuleCode() {

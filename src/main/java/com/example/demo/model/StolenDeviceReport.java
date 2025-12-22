@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,24 +12,81 @@ public class StolenDeviceReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String serialNumber;
+
+    @Column(nullable = false)
     private String reportedBy;
+
+    @Column(nullable = false)
     private LocalDateTime reportDate;
+
+    @Column(nullable = false)
     private String details;
 
-    // ===== Getters & Setters =====
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // 🔹 No-args constructor (JPA requirement)
+    public StolenDeviceReport() {
+    }
 
-    public String getSerialNumber() { return serialNumber; }
-    public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
+    // 🔹 All-args constructor
+    public StolenDeviceReport(
+            Long id,
+            String serialNumber,
+            String reportedBy,
+            LocalDateTime reportDate,
+            String details) {
+        this.id = id;
+        this.serialNumber = serialNumber;
+        this.reportedBy = reportedBy;
+        this.reportDate = reportDate;
+        this.details = details;
+    }
 
-    public String getReportedBy() { return reportedBy; }
-    public void setReportedBy(String reportedBy) { this.reportedBy = reportedBy; }
+    // 🔹 Auto-generate reportDate
+    @PrePersist
+    public void prePersist() {
+        this.reportDate = LocalDateTime.now();
+    }
 
-    public LocalDateTime getReportDate() { return reportDate; }
-    public void setReportDate(LocalDateTime reportDate) { this.reportDate = reportDate; }
+    // 🔹 Getters and Setters
 
-    public String getDetails() { return details; }
-    public void setDetails(String details) { this.details = details; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getReportedBy() {
+        return reportedBy;
+    }
+
+    public void setReportedBy(String reportedBy) {
+        this.reportedBy = reportedBy;
+    }
+
+    public LocalDateTime getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(LocalDateTime reportDate) {
+        this.reportDate = reportDate;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }

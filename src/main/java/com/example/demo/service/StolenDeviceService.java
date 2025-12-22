@@ -1,9 +1,16 @@
 package com.example.demo.service;
-import java.util.List;
+
 import com.example.demo.model.StolenDeviceReport;
-public interface StolenDeviceService{
-    StolenDeviceReport reportStolen(StolenDeviceReport report);
-    List<StolenDeviceReport>getReportsBySerial(String serialNumber);
-    List<StolenDeviceReport>getReportById(Long id);
-    List<StolenDeviceReport>getAllReports();
+
+import java.util.List;
+
+public interface StolenDeviceReportService {
+
+    StolenDeviceReport reportStolenDevice(StolenDeviceReport report);
+
+    StolenDeviceReport getById(Long id);
+
+    List<StolenDeviceReport> getBySerialNumber(String serialNumber);
+
+    List<StolenDeviceReport> getAllReports();
 }
