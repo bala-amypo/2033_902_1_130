@@ -1,10 +1,20 @@
 package com.example.demo.service;
-import java.util.List;
+
 import com.example.demo.model.FraudAlertRecord;
-public interface FraudAlertService{
-    FraudAlertRecord createRule(FraudAlertRecord alert);
+
+import java.util.List;
+
+public interface FraudAlertService {
+
+    FraudAlertRecord createAlert(FraudAlertRecord alert);
+
     FraudAlertRecord resolveAlert(Long id);
-    List<FraudAlertRecord>getAlertBySerial(String serialNumber);
-    List<FraudAlertRecord>getAlertByClaim(Long claimId);
-    List<FraudAlertRecord>getAllRules();
+
+    FraudAlertRecord getById(Long id);
+
+    List<FraudAlertRecord> getBySerialNumber(String serialNumber);
+
+    List<FraudAlertRecord> getByClaimId(Long claimId);
+
+    List<FraudAlertRecord> getAllAlerts();
 }
