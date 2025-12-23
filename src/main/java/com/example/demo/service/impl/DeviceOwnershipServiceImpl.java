@@ -29,6 +29,18 @@ public class DeviceOwnershipServiceImpl implements DeviceOwnershipService {
                         new NoSuchElementException("Device not found with id: " + id));
     }
 
+    // ✅ THIS METHOD WAS MISSING (CAUSE OF ERROR)
+    @Override
+    public DeviceOwnershipRecord getBySerialNumber(String serialNumber) {
+        return repository.findAll()
+                .stream()
+                .filter(d -> d.getSerialNumber().equals(serialNumber))
+                .findFirst()
+                .orElseThrow(() ->
+                        new NoSuchElementException(
+                                "Device not found with serial number: " + serialNumber));
+    }
+
     @Override
     public List<DeviceOwnershipRecord> getAllDevices() {
         return repository.findAll();

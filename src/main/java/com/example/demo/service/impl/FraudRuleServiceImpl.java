@@ -56,9 +56,4 @@ public class FraudRuleServiceImpl implements FraudRuleService {
                 .filter(FraudRule::getActive)
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public void deleteRule(Long id) {
-        repository.deleteById(id);
-    }
 }
