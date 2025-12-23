@@ -25,10 +25,9 @@ public class FraudRuleServiceImpl implements FraudRuleService {
 
     @Override
     public FraudRule updateRule(Long id, FraudRule rule) {
-
         FraudRule existing = repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Fraud rule not found with id: " + id));
+                        new NoSuchElementException("Rule not found: " + id));
 
         existing.setRuleCode(rule.getRuleCode());
         existing.setDescription(rule.getDescription());
@@ -42,7 +41,7 @@ public class FraudRuleServiceImpl implements FraudRuleService {
     public FraudRule getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Fraud rule not found with id: " + id));
+                        new NoSuchElementException("Rule not found: " + id));
     }
 
     @Override

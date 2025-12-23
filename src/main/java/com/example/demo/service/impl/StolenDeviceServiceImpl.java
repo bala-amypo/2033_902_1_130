@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class StolenDeviceServiceImpl implements StolenDeviceService {
@@ -25,22 +24,11 @@ public class StolenDeviceServiceImpl implements StolenDeviceService {
     }
 
     @Override
-    public StolenDeviceReport getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new NoSuchElementException(
-                                "Stolen device report not found with id: " + id));
-    }
-
-    @Override
-    public StolenDeviceReport getBySerialNumber(String serialNumber) {
+    public List<StolenDeviceReport> getBySerialNumber(String serialNumber) {
         return repository.findAll()
                 .stream()
                 .filter(r -> r.getSerialNumber().equals(serialNumber))
-                .findFirst()
-                .orElseThrow(() ->
-                        new NoSuchElementException(
-                                "No stolen report for serial: " + serialNumber));
+                .toList();
     }
 
     @Override

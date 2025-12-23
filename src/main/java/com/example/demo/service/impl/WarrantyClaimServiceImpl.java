@@ -27,12 +27,7 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
 
     @Override
     public WarrantyClaimRecord updateStatus(Long id, String status) {
-
-        WarrantyClaimRecord claim = repository.findById(id)
-                .orElseThrow(() ->
-                        new NoSuchElementException(
-                                "Warranty claim not found with id: " + id));
-
+        WarrantyClaimRecord claim = getById(id);
         claim.setStatus(status);
         return repository.save(claim);
     }
@@ -41,8 +36,18 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
     public WarrantyClaimRecord getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
+                        new NoSuchElementException("Claim not found: " + id));
+    }
+
+    @Override
+    public WarrantyClaimRecord getBySerialNumber(String serialNumber) {
+        return repository.findAll()
+                .stream()
+                .filter(c -> c.getSerialNumber().equals(serialNumber))
+                .findFirst()
+                .orElseThrow(() ->
                         new NoSuchElementException(
-                                "Warranty claim not found with id: " + id));
+                                "Claim not found for serial: " + serialNumber));
     }
 
     @Override
