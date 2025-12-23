@@ -16,7 +16,6 @@ public class WarrantyClaimController {
         this.service = service;
     }
 
-    // POST /api/claims
     @PostMapping
     public WarrantyClaimRecord submitClaim(@RequestBody WarrantyClaimRecord claim) {
         return service.submitClaim(claim);

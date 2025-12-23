@@ -17,14 +17,12 @@ public class DeviceOwnershipController {
         this.service = service;
     }
 
-    // POST /api/devices
     @PostMapping
     public DeviceOwnershipRecord registerDevice(
             @RequestBody DeviceOwnershipRecord device) {
         return service.registerDevice(device);
     }
 
-    // PUT /api/devices/{id}/status
     @PutMapping("/{id}/status")
     public DeviceOwnershipRecord updateStatus(
             @PathVariable Long id,
@@ -32,21 +30,18 @@ public class DeviceOwnershipController {
         return service.updateStatus(id, active);
     }
 
-    // GET /api/devices/serial/{serialNumber}
     @GetMapping("/serial/{serialNumber}")
     public DeviceOwnershipRecord getBySerialNumber(
             @PathVariable String serialNumber) {
         return service.getBySerialNumber(serialNumber);
     }
 
-    // GET /api/devices/{id}
     @GetMapping("/{id}")
     public DeviceOwnershipRecord getById(
             @PathVariable Long id) {
         return service.getById(id);
     }
 
-    // GET /api/devices
     @GetMapping
     public List<DeviceOwnershipRecord> getAllDevices() {
         return service.getAllDevices();

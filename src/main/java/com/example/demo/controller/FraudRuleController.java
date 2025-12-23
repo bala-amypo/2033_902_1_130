@@ -16,13 +16,11 @@ public class FraudRuleController {
         this.service = service;
     }
 
-    // POST /api/fraud-rules
     @PostMapping
     public FraudRule createRule(@RequestBody FraudRule rule) {
         return service.createRule(rule);
     }
 
-    // PUT /api/fraud-rules/{id}
     @PutMapping("/{id}")
     public FraudRule updateRule(
             @PathVariable Long id,
@@ -30,19 +28,16 @@ public class FraudRuleController {
         return service.updateRule(id, rule);
     }
 
-    // GET /api/fraud-rules/active
     @GetMapping("/active")
     public List<FraudRule> getActiveRules() {
         return service.getActiveRules();
     }
 
-    // GET /api/fraud-rules/{id}
     @GetMapping("/{id}")
     public FraudRule getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    // GET /api/fraud-rules
     @GetMapping
     public List<FraudRule> getAllRules() {
         return service.getAllRules();
