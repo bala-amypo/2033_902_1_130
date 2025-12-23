@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.WarrantyClaimRecord;
-import com.example.demo.repository.WarrantyClaimRecordRepository;
+import com.example.demo.repository.WarrantyClaimRepository;
 import com.example.demo.service.WarrantyClaimService;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +20,20 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
 
     @Override
     public WarrantyClaimRecord submitClaim(WarrantyClaimRecord claim) {
-
         claim.setSubmittedAt(LocalDateTime.now());
         claim.setStatus("SUBMITTED");
+        return repository.save(claim);
+    }
 
+    @Override
+    public WarrantyClaimRecord updateStatus(Long id, String status) {
+
+        WarrantyClaimRecord claim = repository.findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException(
+                                "Warranty claim not found with id: " + id));
+
+        claim.setStatus(status);
         return repository.save(claim);
     }
 
@@ -36,7 +46,7 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
     }
 
     @Override
-    public List<WarrantyClaimRecord> getAll() {
+    public List<WarrantyClaimRecord> getAllClaims() {
         return repository.findAll();
     }
 }

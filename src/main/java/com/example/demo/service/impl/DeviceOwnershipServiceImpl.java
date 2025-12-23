@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.DeviceOwnershipRecord;
-import com.example.demo.repository.DeviceOwnershipRecordRepository;
+import com.example.demo.repository.DeviceOwnershipRepository;
 import com.example.demo.service.DeviceOwnershipService;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +11,14 @@ import java.util.NoSuchElementException;
 @Service
 public class DeviceOwnershipServiceImpl implements DeviceOwnershipService {
 
-    private final DeviceOwnershipRecordRepository repository;
+    private final DeviceOwnershipRepository repository;
 
-    public DeviceOwnershipServiceImpl(DeviceOwnershipRecordRepository repository) {
+    public DeviceOwnershipServiceImpl(DeviceOwnershipRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device) {
-
-        if (repository.existsBySerialNumber(device.getSerialNumber())) {
-            throw new IllegalArgumentException(
-                    "Device already registered with serial: " + device.getSerialNumber());
-        }
-
         return repository.save(device);
     }
 
@@ -37,14 +31,17 @@ public class DeviceOwnershipServiceImpl implements DeviceOwnershipService {
 
     @Override
     public DeviceOwnershipRecord getBySerialNumber(String serialNumber) {
-        return repository.findBySerialNumber(serialNumber)
+        return repository.findAll()
+                .stream()
+                .filter(d -> d.getSerialNumber().equals(serialNumber))
+                .findFirst()
                 .orElseThrow(() ->
                         new NoSuchElementException(
                                 "Device not found with serial: " + serialNumber));
     }
 
     @Override
-    public List<DeviceOwnershipRecord> getAll() {
+    public List<DeviceOwnershipRecord> getAllDevices() {
         return repository.findAll();
     }
 }

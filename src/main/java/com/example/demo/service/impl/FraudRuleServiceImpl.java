@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class FraudRuleServiceImpl implements FraudRuleService {
@@ -19,12 +20,6 @@ public class FraudRuleServiceImpl implements FraudRuleService {
 
     @Override
     public FraudRule createRule(FraudRule rule) {
-
-        if (repository.existsByRuleCode(rule.getRuleCode())) {
-            throw new IllegalArgumentException(
-                    "Fraud rule already exists: " + rule.getRuleCode());
-        }
-
         return repository.save(rule);
     }
 
@@ -38,7 +33,7 @@ public class FraudRuleServiceImpl implements FraudRuleService {
         existing.setRuleCode(rule.getRuleCode());
         existing.setDescription(rule.getDescription());
         existing.setRuleType(rule.getRuleType());
-        existing.setActive(rule.isActive());
+        existing.setActive(rule.getActive());
 
         return repository.save(existing);
     }
@@ -56,11 +51,15 @@ public class FraudRuleServiceImpl implements FraudRuleService {
     }
 
     @Override
+    public List<FraudRule> getActiveRules() {
+        return repository.findAll()
+                .stream()
+                .filter(FraudRule::getActive)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteRule(Long id) {
-        if (!repository.existsById(id)) {
-            throw new NoSuchElementException(
-                    "Fraud rule not found with id: " + id);
-        }
         repository.deleteById(id);
     }
 }

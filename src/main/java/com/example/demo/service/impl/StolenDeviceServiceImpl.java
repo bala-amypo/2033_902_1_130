@@ -19,15 +19,9 @@ public class StolenDeviceServiceImpl implements StolenDeviceService {
     }
 
     @Override
-    public StolenDeviceReport reportStolen(StolenDeviceReport record) {
-
-        if (repository.existsBySerialNumber(record.getSerialNumber())) {
-            throw new IllegalArgumentException(
-                    "Device already reported stolen: " + record.getSerialNumber());
-        }
-
-        record.setReportDate(LocalDateTime.now());
-        return repository.save(record);
+    public StolenDeviceReport reportStolenDevice(StolenDeviceReport report) {
+        report.setReportDate(LocalDateTime.now());
+        return repository.save(report);
     }
 
     @Override
@@ -35,11 +29,22 @@ public class StolenDeviceServiceImpl implements StolenDeviceService {
         return repository.findById(id)
                 .orElseThrow(() ->
                         new NoSuchElementException(
-                                "Stolen device record not found with id: " + id));
+                                "Stolen device report not found with id: " + id));
     }
 
     @Override
-    public List<StolenDeviceReport> getAll() {
+    public StolenDeviceReport getBySerialNumber(String serialNumber) {
+        return repository.findAll()
+                .stream()
+                .filter(r -> r.getSerialNumber().equals(serialNumber))
+                .findFirst()
+                .orElseThrow(() ->
+                        new NoSuchElementException(
+                                "No stolen report for serial: " + serialNumber));
+    }
+
+    @Override
+    public List<StolenDeviceReport> getAllReports() {
         return repository.findAll();
     }
 }
