@@ -1,29 +1,36 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.FraudAlertRecord;
 import com.example.demo.repository.FraudAlertRecordRepository;
 import com.example.demo.service.FraudAlertService;
 import org.springframework.stereotype.Service;
-import com.example.demo.model.FraudAlertRecord;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class FraudAlertServiceImpl implements FraudAlertService {
 
-    private final FraudAlertRecordRepository repository;
+    private final FraudAlertRepository repository;
 
-    public FraudAlertServiceImpl(FraudAlertRecordRepository repository) {
+    public FraudAlertServiceImpl(FraudAlertRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public FraudAlertRecord createAlert(FraudAlertRecord alert) {
+        alert.setAlertDate(LocalDateTime.now());
+        alert.setResolved(false);
         return repository.save(alert);
     }
 
     @Override
     public FraudAlertRecord resolveAlert(Long id) {
-        FraudAlertRecord alert = getById(id);
+        FraudAlertRecord alert = repository.findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException("Fraud alert not found with id: " + id));
+
         alert.setResolved(true);
         return repository.save(alert);
     }
@@ -32,8 +39,7 @@ public class FraudAlertServiceImpl implements FraudAlertService {
     public FraudAlertRecord getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Fraud alert not found with id: " + id));
+                        new NoSuchElementException("Fraud alert not found with id: " + id));
     }
 
     @Override

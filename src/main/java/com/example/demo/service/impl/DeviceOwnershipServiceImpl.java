@@ -1,41 +1,30 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.DeviceOwnershipRecord;
-import com.example.demo.repository.DeviceOwnershipRecordRepository;
+import com.example.demo.repository.DeviceOwnershipRepository;
 import com.example.demo.service.DeviceOwnershipService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
-public class DeviceOwnershipServiceImpl
-        implements DeviceOwnershipService {
+public class DeviceOwnershipServiceImpl implements DeviceOwnershipService {
 
-    private final DeviceOwnershipRecordRepository repository;
+    private final DeviceOwnershipRepository repository;
 
-    public DeviceOwnershipServiceImpl(
-            DeviceOwnershipRecordRepository repository) {
+    public DeviceOwnershipServiceImpl(DeviceOwnershipRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public DeviceOwnershipRecord registerDevice(
-            DeviceOwnershipRecord device) {
+    public DeviceOwnershipRecord registerDevice(DeviceOwnershipRecord device) {
 
         if (repository.existsBySerialNumber(device.getSerialNumber())) {
-            throw new ValidationException(
-                    "Device already registered with serial: "
-                            + device.getSerialNumber());
+            throw new IllegalArgumentException(
+                    "Device already registered with serial: " + device.getSerialNumber());
         }
 
-        return repository.save(device);
-    }
-
-    @Override
-    public DeviceOwnershipRecord updateStatus(Long id, Boolean active) {
-
-        DeviceOwnershipRecord device = getById(id);
-        device.setActive(active);
         return repository.save(device);
     }
 
@@ -43,22 +32,19 @@ public class DeviceOwnershipServiceImpl
     public DeviceOwnershipRecord getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Device not found with id: " + id));
+                        new NoSuchElementException("Device not found with id: " + id));
     }
 
     @Override
-    public DeviceOwnershipRecord getBySerialNumber(
-            String serialNumber) {
+    public DeviceOwnershipRecord getBySerialNumber(String serialNumber) {
         return repository.findBySerialNumber(serialNumber)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Device not found with serial: "
-                                        + serialNumber));
+                        new NoSuchElementException(
+                                "Device not found with serial: " + serialNumber));
     }
 
     @Override
-    public List<DeviceOwnershipRecord> getAllDevices() {
+    public List<DeviceOwnershipRecord> getAll() {
         return repository.findAll();
     }
 }
