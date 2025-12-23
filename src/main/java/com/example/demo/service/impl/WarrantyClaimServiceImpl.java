@@ -36,18 +36,22 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
     public WarrantyClaimRecord getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Claim not found: " + id));
+                        new NoSuchElementException("Claim not found with id: " + id));
     }
 
     @Override
-    public WarrantyClaimRecord getBySerialNumber(String serialNumber) {
-        return repository.findAll()
+    public List<WarrantyClaimRecord> getBySerialNumber(String serialNumber) {
+        List<WarrantyClaimRecord> claims = repository.findAll()
                 .stream()
                 .filter(c -> c.getSerialNumber().equals(serialNumber))
-                .findFirst()
-                .orElseThrow(() ->
-                        new NoSuchElementException(
-                                "Claim not found for serial: " + serialNumber));
+                .toList();
+
+        if (claims.isEmpty()) {
+            throw new NoSuchElementException(
+                    "No claims found for serial number: " + serialNumber);
+        }
+
+        return claims;
     }
 
     @Override
