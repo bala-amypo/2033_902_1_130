@@ -22,7 +22,6 @@ public class StolenDeviceServiceImpl
     public StolenDeviceReport reportStolenDevice(
             StolenDeviceReport report) {
 
-        // 🔒 Serial number validation (stub)
         if (report.getSerialNumber() == null
                 || report.getSerialNumber().isBlank()) {
             throw new ValidationException("Invalid device serial number");

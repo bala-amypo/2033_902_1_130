@@ -19,7 +19,6 @@ public class FraudRuleServiceImpl implements FraudRuleService {
     @Override
     public FraudRule createRule(FraudRule rule) {
 
-        // 🔒 ruleCode must be unique
         repository.findByRuleCode(rule.getRuleCode())
                 .ifPresent(r -> {
                     throw new ValidationException(

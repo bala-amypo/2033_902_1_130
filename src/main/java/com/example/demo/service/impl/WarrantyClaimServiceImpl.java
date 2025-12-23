@@ -19,7 +19,6 @@ public class WarrantyClaimServiceImpl implements WarrantyClaimService {
     @Override
     public WarrantyClaimRecord submitClaim(WarrantyClaimRecord claim) {
 
-        // 🔒 Serial number validation (stub – replace with real device check)
         if (claim.getSerialNumber() == null || claim.getSerialNumber().isBlank()) {
             throw new ValidationException("Invalid device serial number");
         }
