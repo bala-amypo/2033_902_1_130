@@ -27,11 +27,9 @@ public class FraudRule {
     @Column(nullable = false)
     private Boolean active;
 
-    // 🔹 No-args constructor (JPA)
     public FraudRule() {
     }
 
-    // 🔹 All-args constructor
     public FraudRule(
             Long id,
             String ruleCode,
@@ -45,7 +43,6 @@ public class FraudRule {
         this.active = active;
     }
 
-    // 🔹 Getters & Setters
 
     public Long getId() {
         return id;

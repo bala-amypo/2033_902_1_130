@@ -30,11 +30,9 @@ public class WarrantyClaimRecord {
     @Column(nullable = false)
     private LocalDateTime submittedAt;
 
-    // 🔹 No-argument constructor (REQUIRED by JPA)
     public WarrantyClaimRecord() {
     }
 
-    // 🔹 All-argument constructor
     public WarrantyClaimRecord(
             Long id,
             String serialNumber,
@@ -52,7 +50,6 @@ public class WarrantyClaimRecord {
         this.submittedAt = submittedAt;
     }
 
-    // 🔹 Auto-generate submittedAt and default status
     @PrePersist
     public void prePersist() {
         this.submittedAt = LocalDateTime.now();
@@ -61,7 +58,6 @@ public class WarrantyClaimRecord {
         }
     }
 
-    // 🔹 Getters and Setters
 
     public Long getId() {
         return id;

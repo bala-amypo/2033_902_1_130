@@ -35,11 +35,9 @@ public class DeviceOwnershipRecord {
     @Column(nullable = false)
     private Boolean active;
 
-    // 🔹 No-args constructor (JPA)
     public DeviceOwnershipRecord() {
     }
 
-    // 🔹 All-args constructor
     public DeviceOwnershipRecord(
             Long id,
             String serialNumber,
@@ -57,7 +55,6 @@ public class DeviceOwnershipRecord {
         this.active = active;
     }
 
-    // 🔹 Default active = true
     @PrePersist
     public void prePersist() {
         if (this.active == null) {
@@ -65,7 +62,6 @@ public class DeviceOwnershipRecord {
         }
     }
 
-    // 🔹 Getters and Setters
 
     public Long getId() {
         return id;

@@ -33,11 +33,9 @@ public class FraudAlertRecord {
     @Column(nullable = false)
     private Boolean resolved;
 
-    // 🔹 No-args constructor (JPA)
     public FraudAlertRecord() {
     }
 
-    // 🔹 All-args constructor
     public FraudAlertRecord(
             Long id,
             Long claimId,
@@ -57,7 +55,6 @@ public class FraudAlertRecord {
         this.resolved = resolved;
     }
 
-    // 🔹 Default values
     @PrePersist
     public void prePersist() {
         this.alertDate = LocalDateTime.now();
@@ -66,7 +63,6 @@ public class FraudAlertRecord {
         }
     }
 
-    // 🔹 Getters and Setters
 
     public Long getId() {
         return id;

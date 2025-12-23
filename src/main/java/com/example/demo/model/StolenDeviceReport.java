@@ -24,11 +24,9 @@ public class StolenDeviceReport {
     @Column(nullable = false)
     private String details;
 
-    // 🔹 No-args constructor (JPA requirement)
     public StolenDeviceReport() {
     }
 
-    // 🔹 All-args constructor
     public StolenDeviceReport(
             Long id,
             String serialNumber,
@@ -42,13 +40,11 @@ public class StolenDeviceReport {
         this.details = details;
     }
 
-    // 🔹 Auto-generate reportDate
     @PrePersist
     public void prePersist() {
         this.reportDate = LocalDateTime.now();
     }
 
-    // 🔹 Getters and Setters
 
     public Long getId() {
         return id;

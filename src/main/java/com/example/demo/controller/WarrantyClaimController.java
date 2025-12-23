@@ -21,7 +21,6 @@ public class WarrantyClaimController {
         return service.submitClaim(claim);
     }
 
-    // PUT /api/claims/{id}/status
     @PutMapping("/{id}/status")
     public WarrantyClaimRecord updateStatus(
             @PathVariable Long id,
@@ -29,19 +28,16 @@ public class WarrantyClaimController {
         return service.updateStatus(id, status);
     }
 
-    // GET /api/claims/serial/{serialNumber}
     @GetMapping("/serial/{serialNumber}")
     public List<WarrantyClaimRecord> getBySerial(@PathVariable String serialNumber) {
         return service.getBySerialNumber(serialNumber);
     }
 
-    // GET /api/claims/{id}
     @GetMapping("/{id}")
     public WarrantyClaimRecord getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    // GET /api/claims
     @GetMapping
     public List<WarrantyClaimRecord> getAllClaims() {
         return service.getAllClaims();
