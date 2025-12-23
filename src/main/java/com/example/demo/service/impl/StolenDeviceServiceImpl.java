@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.StolenDeviceRecord;
-import com.example.demo.repository.StolenDeviceRepository;
+import com.example.demo.model.StolenDeviceReport;
+import com.example.demo.repository.StolenDeviceReportRepository;
 import com.example.demo.service.StolenDeviceService;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +12,14 @@ import java.util.NoSuchElementException;
 @Service
 public class StolenDeviceServiceImpl implements StolenDeviceService {
 
-    private final StolenDeviceRepository repository;
+    private final StolenDeviceReportRepository repository;
 
-    public StolenDeviceServiceImpl(StolenDeviceRepository repository) {
+    public StolenDeviceServiceImpl(StolenDeviceReportRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public StolenDeviceRecord reportStolen(StolenDeviceRecord record) {
+    public StolenDeviceReport reportStolen(StolenDeviceReport record) {
 
         if (repository.existsBySerialNumber(record.getSerialNumber())) {
             throw new IllegalArgumentException(
@@ -31,7 +31,7 @@ public class StolenDeviceServiceImpl implements StolenDeviceService {
     }
 
     @Override
-    public StolenDeviceRecord getById(Long id) {
+    public StolenDeviceReport getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
                         new NoSuchElementException(
@@ -39,7 +39,7 @@ public class StolenDeviceServiceImpl implements StolenDeviceService {
     }
 
     @Override
-    public List<StolenDeviceRecord> getAll() {
+    public List<StolenDeviceReport> getAll() {
         return repository.findAll();
     }
 }

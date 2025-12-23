@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
 @Service
 public class FraudAlertServiceImpl implements FraudAlertService {
 
-    private final FraudAlertRepository repository;
+    private final FraudAlertRecordRepository repository;
 
-    public FraudAlertServiceImpl(FraudAlertRepository repository) {
+    public FraudAlertServiceImpl(FraudAlertRecordRepository repository) {
         this.repository = repository;
     }
 

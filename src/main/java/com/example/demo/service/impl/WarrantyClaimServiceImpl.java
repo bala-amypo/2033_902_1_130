@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.WarrantyClaimRecord;
-import com.example.demo.repository.WarrantyClaimRepository;
+import com.example.demo.repository.WarrantyClaimRecordRepository;
 import com.example.demo.service.WarrantyClaimService;
 import org.springframework.stereotype.Service;
 

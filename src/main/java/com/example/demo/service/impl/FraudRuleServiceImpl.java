@@ -1,59 +1,66 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.FraudAlertRecord;
-import com.example.demo.repository.FraudAlertRepository;
-import com.example.demo.service.FraudAlertService;
+import com.example.demo.model.FraudRule;
+import com.example.demo.repository.FraudRuleRepository;
+import com.example.demo.service.FraudRuleService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class FraudAlertServiceImpl implements FraudAlertService {
+public class FraudRuleServiceImpl implements FraudRuleService {
 
-    private final FraudAlertRepository repository;
+    private final FraudRuleRepository repository;
 
-    public FraudAlertServiceImpl(FraudAlertRepository repository) {
+    public FraudRuleServiceImpl(FraudRuleRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public FraudAlertRecord createAlert(FraudAlertRecord alert) {
-        alert.setAlertDate(LocalDateTime.now());
-        alert.setResolved(false);
-        return repository.save(alert);
+    public FraudRule createRule(FraudRule rule) {
+
+        if (repository.existsByRuleCode(rule.getRuleCode())) {
+            throw new IllegalArgumentException(
+                    "Fraud rule already exists: " + rule.getRuleCode());
+        }
+
+        return repository.save(rule);
     }
 
     @Override
-    public FraudAlertRecord resolveAlert(Long id) {
-        FraudAlertRecord alert = repository.findById(id)
+    public FraudRule updateRule(Long id, FraudRule rule) {
+
+        FraudRule existing = repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Fraud alert not found with id: " + id));
+                        new NoSuchElementException("Fraud rule not found with id: " + id));
 
-        alert.setResolved(true);
-        return repository.save(alert);
+        existing.setRuleCode(rule.getRuleCode());
+        existing.setDescription(rule.getDescription());
+        existing.setRuleType(rule.getRuleType());
+        existing.setActive(rule.isActive());
+
+        return repository.save(existing);
     }
 
     @Override
-    public FraudAlertRecord getById(Long id) {
+    public FraudRule getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("Fraud alert not found with id: " + id));
+                        new NoSuchElementException("Fraud rule not found with id: " + id));
     }
 
     @Override
-    public List<FraudAlertRecord> getBySerialNumber(String serialNumber) {
-        return repository.findBySerialNumber(serialNumber);
-    }
-
-    @Override
-    public List<FraudAlertRecord> getByClaimId(Long claimId) {
-        return repository.findByClaimId(claimId);
-    }
-
-    @Override
-    public List<FraudAlertRecord> getAllAlerts() {
+    public List<FraudRule> getAllRules() {
         return repository.findAll();
+    }
+
+    @Override
+    public void deleteRule(Long id) {
+        if (!repository.existsById(id)) {
+            throw new NoSuchElementException(
+                    "Fraud rule not found with id: " + id);
+        }
+        repository.deleteById(id);
     }
 }
