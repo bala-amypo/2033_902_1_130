@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import java.time.*;
 @Entity
 public class User{
-   /*  @Id
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
@@ -51,5 +51,5 @@ public class User{
     }
     public User(){
         
-    } */
+    }
 }
