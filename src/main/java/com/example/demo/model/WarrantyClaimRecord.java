@@ -1,117 +1,62 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+    import jakarta.persistence.*;
+    import java.time.LocalDateTime;
 
-import java.time.LocalDateTime;
+    @Entity
+    @Table(name = "warranty_claim_records")
+    public class WarrantyClaimRecord {
 
-@Entity
-@Table(name = "warranty_claims")
-public class WarrantyClaimRecord {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        private String serialNumber;
+        private String claimantName;
+        private String claimantEmail;
+        private String claimReason;
+        private String status = "PENDING";
+        private LocalDateTime submittedAt;
 
-    @Column(nullable = false)
-    private String serialNumber;
+        @PrePersist
+        public void onCreate() {
+            submittedAt = LocalDateTime.now();
+        }
 
-    @Column(nullable = false)
-    private String claimantName;
+        public WarrantyClaimRecord() {}
 
-    @Column(nullable = false)
-    private String claimantEmail;
+        public Long getId() { return id; }
+        public void setId(Long id) { this.id = id; }
 
-    @Column(nullable = false)
-    private String claimReason;
+        public String getSerialNumber() { return serialNumber; }
+        public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
 
-    @Column(nullable = false)
-    private String status; // PENDING / APPROVED / REJECTED / FLAGGED
+        public String getClaimantName() { return claimantName; }
+        public void setClaimantName(String claimantName) { this.claimantName = claimantName; }
 
-    @Column(nullable = false)
-    private LocalDateTime submittedAt;
+        public String getClaimantEmail() { return claimantEmail; }
+        public void setClaimantEmail(String claimantEmail) { this.claimantEmail = claimantEmail; }
 
-    public WarrantyClaimRecord() {
-    }
+        public String getClaimReason() { return claimReason; }
+        public void setClaimReason(String claimReason) { this.claimReason = claimReason; }
 
-    public WarrantyClaimRecord(
-            Long id,
-            String serialNumber,
-            String claimantName,
-            String claimantEmail,
-            String claimReason,
-            String status,
-            LocalDateTime submittedAt) {
-        this.id = id;
-        this.serialNumber = serialNumber;
-        this.claimantName = claimantName;
-        this.claimantEmail = claimantEmail;
-        this.claimReason = claimReason;
-        this.status = status;
-        this.submittedAt = submittedAt;
-    }
+        public String getStatus() { return status; }
+        public void setStatus(String status) { this.status = status; }
 
-    @PrePersist
-    public void prePersist() {
-        this.submittedAt = LocalDateTime.now();
-        if (this.status == null) {
-            this.status = "PENDING";
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public static class Builder {
+            private final WarrantyClaimRecord w = new WarrantyClaimRecord();
+
+            public Builder id(Long id) { w.setId(id); return this; }
+            public Builder serialNumber(String s) { w.setSerialNumber(s); return this; }
+            public Builder claimantName(String s) { w.setClaimantName(s); return this; }
+            public Builder claimantEmail(String s) { w.setClaimantEmail(s); return this; }
+            public Builder claimReason(String s) { w.setClaimReason(s); return this; }
+            public Builder status(String s) { w.setStatus(s); return this; }
+
+            public WarrantyClaimRecord build() { return w; }
         }
     }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public String getClaimantName() {
-        return claimantName;
-    }
-
-    public void setClaimantName(String claimantName) {
-        this.claimantName = claimantName;
-    }
-
-    public String getClaimantEmail() {
-        return claimantEmail;
-    }
-
-    public void setClaimantEmail(String claimantEmail) {
-        this.claimantEmail = claimantEmail;
-    }
-
-    public String getClaimReason() {
-        return claimReason;
-    }
-
-    public void setClaimReason(String claimReason) {
-        this.claimReason = claimReason;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getSubmittedAt() {
-        return submittedAt;
-    }
-
-    public void setSubmittedAt(LocalDateTime submittedAt) {
-        this.submittedAt = submittedAt;
-    }
-}
