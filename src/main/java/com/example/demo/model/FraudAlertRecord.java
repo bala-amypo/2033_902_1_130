@@ -1,11 +1,10 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "fraud_alerts")
+@Table(name = "fraud_alert_records")
 public class FraudAlertRecord {
 
     @Id
@@ -24,45 +23,96 @@ public class FraudAlertRecord {
     @Column(nullable = false)
     private String severity;
 
-    @Column(nullable = false)
     private String message;
 
-    @Column(nullable = false)
     private LocalDateTime alertDate;
 
-    @Column(nullable = false)
-    private Boolean resolved;
+    private Boolean resolved = false;
+
 
     public FraudAlertRecord() {
     }
 
-    public FraudAlertRecord(
-            Long id,
-            Long claimId,
-            String serialNumber,
-            String alertType,
-            String severity,
-            String message,
-            LocalDateTime alertDate,
-            Boolean resolved) {
-        this.id = id;
-        this.claimId = claimId;
-        this.serialNumber = serialNumber;
-        this.alertType = alertType;
-        this.severity = severity;
-        this.message = message;
-        this.alertDate = alertDate;
-        this.resolved = resolved;
+    private FraudAlertRecord(Builder builder) {
+        this.id = builder.id;
+        this.claimId = builder.claimId;
+        this.serialNumber = builder.serialNumber;
+        this.alertType = builder.alertType;
+        this.severity = builder.severity;
+        this.message = builder.message;
+        this.alertDate = builder.alertDate;
+        this.resolved = builder.resolved;
     }
 
     @PrePersist
-    public void prePersist() {
-        this.alertDate = LocalDateTime.now();
+    public void onCreate() {
+        if (this.alertDate == null) {
+            this.alertDate = LocalDateTime.now();
+        }
         if (this.resolved == null) {
             this.resolved = false;
         }
     }
 
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Long id;
+        private Long claimId;
+        private String serialNumber;
+        private String alertType;
+        private String severity;
+        private String message;
+        private LocalDateTime alertDate;
+        private Boolean resolved;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder claimId(Long claimId) {
+            this.claimId = claimId;
+            return this;
+        }
+
+        public Builder serialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+            return this;
+        }
+
+        public Builder alertType(String alertType) {
+            this.alertType = alertType;
+            return this;
+        }
+
+        public Builder severity(String severity) {
+            this.severity = severity;
+            return this;
+        }
+
+        public Builder message(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public Builder alertDate(LocalDateTime alertDate) {
+            this.alertDate = alertDate;
+            return this;
+        }
+
+        public Builder resolved(Boolean resolved) {
+            this.resolved = resolved;
+            return this;
+        }
+
+        public FraudAlertRecord build() {
+            return new FraudAlertRecord(this);
+        }
+    }
 
     public Long getId() {
         return id;

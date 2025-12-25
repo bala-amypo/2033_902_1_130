@@ -1,14 +1,10 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(
-        name = "fraud_rules",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "ruleCode")
-        }
-)
+@Table(name = "fraud_rules")
 public class FraudRule {
 
     @Id
@@ -19,28 +15,83 @@ public class FraudRule {
     private String ruleCode;
 
     @Column(nullable = false)
-    private String description;
-
-    @Column(nullable = false)
     private String ruleType;
 
-    @Column(nullable = false)
-    private Boolean active;
+    private String description;
+
+    private Boolean active = true;
+
+    private LocalDateTime createdAt;
+
 
     public FraudRule() {
     }
 
-    public FraudRule(
-            Long id,
-            String ruleCode,
-            String description,
-            String ruleType,
-            Boolean active) {
-        this.id = id;
-        this.ruleCode = ruleCode;
-        this.description = description;
-        this.ruleType = ruleType;
-        this.active = active;
+    private FraudRule(Builder builder) {
+        this.id = builder.id;
+        this.ruleCode = builder.ruleCode;
+        this.ruleType = builder.ruleType;
+        this.description = builder.description;
+        this.active = builder.active;
+        this.createdAt = builder.createdAt;
+    }
+
+    @PrePersist
+    public void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+        if (this.active == null) {
+            this.active = true;
+        }
+    }
+
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Long id;
+        private String ruleCode;
+        private String ruleType;
+        private String description;
+        private Boolean active;
+        private LocalDateTime createdAt;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder ruleCode(String ruleCode) {
+            this.ruleCode = ruleCode;
+            return this;
+        }
+
+        public Builder ruleType(String ruleType) {
+            this.ruleType = ruleType;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder active(Boolean active) {
+            this.active = active;
+            return this;
+        }
+
+        public Builder createdAt(LocalDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public FraudRule build() {
+            return new FraudRule(this);
+        }
     }
 
 
@@ -60,14 +111,6 @@ public class FraudRule {
         this.ruleCode = ruleCode;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getRuleType() {
         return ruleType;
     }
@@ -76,11 +119,27 @@ public class FraudRule {
         this.ruleType = ruleType;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Boolean getActive() {
         return active;
     }
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
