@@ -2,48 +2,44 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DeviceOwnershipRecord;
 import com.example.demo.service.DeviceOwnershipService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/devices")
+@RequestMapping("/devices")
 public class DeviceOwnershipController {
 
-    private final DeviceOwnershipService service;
+    private final DeviceOwnershipService deviceService;
 
-    public DeviceOwnershipController(
-            DeviceOwnershipService service) {
-        this.service = service;
+    public DeviceOwnershipController(DeviceOwnershipService deviceService) {
+        this.deviceService = deviceService;
     }
 
     @PostMapping
-    public DeviceOwnershipRecord registerDevice(
-            @RequestBody DeviceOwnershipRecord device) {
-        return service.registerDevice(device);
+    public ResponseEntity<DeviceOwnershipRecord> register(
+            @RequestBody DeviceOwnershipRecord record) {
+        return ResponseEntity.ok(deviceService.registerDevice(record));
     }
 
-    @PutMapping("/{id}/status")
-    public DeviceOwnershipRecord updateStatus(
-            @PathVariable Long id,
-            @RequestParam Boolean active) {
-        return service.updateStatus(id, active);
-    }
-
-    @GetMapping("/serial/{serialNumber}")
-    public DeviceOwnershipRecord getBySerialNumber(
-            @PathVariable String serialNumber) {
-        return service.getBySerialNumber(serialNumber);
-    }
-
-    @GetMapping("/{id}")
-    public DeviceOwnershipRecord getById(
-            @PathVariable Long id) {
-        return service.getById(id);
+    @GetMapping("/{serial}")
+    public ResponseEntity<?> getBySerial(@PathVariable String serial) {
+        return deviceService.getBySerial(serial)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public List<DeviceOwnershipRecord> getAllDevices() {
-        return service.getAllDevices();
+    public List<DeviceOwnershipRecord> getAll() {
+        return deviceService.getAllDevices();
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<DeviceOwnershipRecord> updateStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+        return ResponseEntity.ok(deviceService.updateDeviceStatus(id, active));
     }
 }
