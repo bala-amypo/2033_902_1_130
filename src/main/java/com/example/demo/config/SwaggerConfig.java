@@ -21,7 +21,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Warranty Claim Fraud Detector")
                         .version("1.0")
-                        .description("API for managing warranty cla"))
+                        .description("API for managing warranty claim and fraud detector."))
 
                 // Server configuration
                 .servers(List.of(
